@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  memory-analysis:
+    container_name: memory-analysis
+    platform: linux/amd64
+    image: xivora/pv204-memory-analysis
+    volumes:
+      - data-prebuilt:/home/vagrant
+
+volumes:
+  data-prebuilt:

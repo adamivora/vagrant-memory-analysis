@@ -13,7 +13,7 @@ Both installed on your system. They are available for Windows, Linux and MacOS,
 so you should be able to get it for the platform of your liking.
 
 Then, you need to either clone this `git` repository (if you know how to work
-with `git`, it's a preferred way), or download 
+with `git`, it's a preferred way), or download
 [its ZIP archive](https://github.com/valorcz/vagrant-memory-analysis/archive/master.zip).
 
 ```bash
@@ -40,9 +40,26 @@ ok and not affecting the functionality of the resulting VM.
 ### Without VirtualBox
 
 If you don't like VirtualBox or cannot use it for any reason, my recommendation is
-to get a VM image of CentOS 7 somewhere and when you get there, you can re-use the 
+to get a VM image of CentOS 7 somewhere and when you get there, you can re-use the
 `provision/provision.sh` script from my repository. In theory, it should prepare
 the working environment too.
+
+### With Docker Compose
+You need the following software installed:
+  * [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+
+#### Option 1 - Build it yourself
+```
+docker compose build # takes ~20 minutes on a M1 Macbook Pro
+docker compose run memory-analysis /bin/bash
+```
+
+#### Option 2 - Use a pre-built image
+This is faster, but it means you trust me with the process of building the image
+and not including any malicious code.
+```
+docker compose -f docker-compose.prebuilt.yml run memory-analysis /bin/bash
+```
 
 ## Logging to the VM
 
@@ -86,11 +103,11 @@ help you with your tasks:
   * `foremost`
   * `radare2` (you don't have to use it, it's just for the curious ones)
 
-## Workshop Images & Exercises 
+## Workshop Images & Exercises
 
 In order to make everything a bit more user friendly, especially for those not
 really familiar with command-line interfaces, I prepared a shell function that
-will download & unpack each memory image in a specific working directory, and 
+will download & unpack each memory image in a specific working directory, and
 switch you into that directory.
 
 So, when you logon to the built VM image (via `vagrant ssh`, as mentioned above),
